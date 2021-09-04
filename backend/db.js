@@ -7,7 +7,8 @@ const connectToMongo = async () => {
         mongoURI,
         {
             useUnifiedTopology: true,
-            useNewUrlParser: true
+            useNewUrlParser: true,
+            useCreateIndex: true
         },
         () => {
             console.log(`Connected to MongoDB - ${mongoURI}`.cyan.bold)
