@@ -2,7 +2,7 @@ const express = require('express')
 const { body, validationResult } = require('express-validator')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const fetchuser = require('../middleware/fetchuser')
+const auth = require('../middleware/auth')
 
 const User = require('../models/User')
 
@@ -138,7 +138,7 @@ router.post(
  *  Mode: Private
  */
 
-router.get('/getuser', fetchuser, async (req, res) => {
+router.get('/getuser', auth, async (req, res) => {
     try {
         const userID = req.user.id // TODO
         const user = await User.findById(userID).select('-password')

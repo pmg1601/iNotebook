@@ -1,6 +1,11 @@
 const mongoose = require('mongoose')
 
 const NotesSchema = new mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user'
+    },
+
     title: {
         type: String,
         required: true
@@ -22,5 +27,5 @@ const NotesSchema = new mongoose.Schema({
     }
 })
 
-const Notes = mongoose.model('notes', NotesSchema)
-module.exports = Notes
+const Note = mongoose.model('notes', NotesSchema)
+module.exports = Note
