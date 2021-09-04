@@ -2,6 +2,7 @@ const express = require('express')
 const { body, validationResult } = require('express-validator')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const fetchuser = require('../middleware/fetchuser')
 
 const User = require('../models/User')
 
@@ -55,14 +56,13 @@ router.post(
 
             // Create a web token
             const data = { id: { id: user.id } }
-            const authToken = jwt.sign(data, JWT_SECRET, (err, token) => {
+            jwt.sign(data, JWT_SECRET, (err, authToken) => {
                 if (err) throw err
                 console.log('   [JWT Token Created and sent!]'.gray)
-                res.status(201).send({ token })
+                res.status(201).send({ authToken })
             })
 
             console.log('+ User Created!'.green)
-            // res.send({ authToken })
         } catch (err) {
             // Some error occured
             console.error('x Something went wrong!'.red)
@@ -117,11 +117,11 @@ router.post(
             }
 
             // Permit a web token to a authenticated user
-            const data = { id: { id: user.id } }
-            const authToken = jwt.sign(data, JWT_SECRET, (err, token) => {
+            const data = { user: { id: user.id } }
+            jwt.sign(data, JWT_SECRET, (err, authToken) => {
                 if (err) throw err
                 console.log('   [JWT Token Created and sent!]'.gray)
-                res.status(201).send({ token })
+                res.status(201).send({ authToken })
             })
 
             console.log('+ User Logged In!'.green)
@@ -133,4 +133,20 @@ router.post(
     }
 )
 
+/** ------------------------------- Get user details ------------------------------
+ *  Method: POST api/auth/getuser
+ *  Mode: Private
+ */
+
+router.get('/getuser', fetchuser, async (req, res) => {
+    try {
+        const userID = req.user.id // TODO
+        const user = await User.findById(userID).select('-password')
+        res.send(user)
+    } catch (err) {
+        // Some error occured
+        console.error('x Something went wrong!'.red)
+        res.status(500).json({ msg: 'Something went wrong!', error: err })
+    }
+})
 module.exports = router
