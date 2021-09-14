@@ -7,11 +7,12 @@ import NoteItem from './NoteItem'
 /* -------------------------------------------------------------------------- */
 
 const Notes = () => {
-    const intialNoteState = { title: '', desc: '', tag: 'default' }
+    const intialNoteState = { id: '', title: '', desc: '', tag: 'default' }
     const [note, setNote] = useState(intialNoteState)
-    const { notes, getNotes } = useContext(noteContext)
+    const { notes, getNotes, editNote } = useContext(noteContext)
 
     const ref = useRef(null)
+    const refClose = useRef(null)
 
     useEffect(() => {
         getNotes()
@@ -24,9 +25,8 @@ const Notes = () => {
     }
 
     const handleEditNote = (e) => {
-        e.preventDefault()
-        // addNote(note)
-        // setNote(intialNoteState)
+        refClose.current.click()
+        editNote(note)
     }
 
     const handleChange = (e) => {
@@ -58,6 +58,7 @@ const Notes = () => {
                                 Edit Note
                             </h5>
                             <button
+                                ref={refClose}
                                 type='button'
                                 className='btn-close'
                                 data-bs-dismiss='modal'
@@ -77,8 +78,8 @@ const Notes = () => {
                                             onChange={handleChange}
                                             type='text'
                                             className='form-control'
-                                            id='etitle'
-                                            name='etitle'
+                                            id='title'
+                                            name='title'
                                             value={note.title}
                                             aria-describedby='emailHelp'
                                         />
@@ -93,8 +94,8 @@ const Notes = () => {
                                             onChange={handleChange}
                                             type='text'
                                             className='form-control'
-                                            id='etag'
-                                            name='etag'
+                                            id='tag'
+                                            name='tag'
                                             value={note.tag}
                                             aria-describedby='emailHelp'
                                         />
@@ -110,8 +111,8 @@ const Notes = () => {
                                         onChange={handleChange}
                                         type='text'
                                         className='form-control'
-                                        id='edesc'
-                                        name='edesc'
+                                        id='desc'
+                                        name='desc'
                                         value={note.desc}
                                     />
                                 </div>
@@ -119,12 +120,6 @@ const Notes = () => {
                         </div>
 
                         <div className='modal-footer'>
-                            <button
-                                type='button'
-                                className='btn btn-secondary'
-                                data-bs-dismiss='modal'>
-                                Close
-                            </button>
                             <button
                                 onClick={handleEditNote}
                                 type='button'

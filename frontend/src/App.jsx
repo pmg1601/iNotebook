@@ -7,7 +7,7 @@ import Home from './components/Home'
 import About from './components/About'
 import NoteState from './context/notes/NoteState'
 import Alert from './components/Alert'
-
+// import NotFound from './components/NotFound'
 /* -------------------------------------------------------------------------- */
 
 const App = () => {
@@ -28,6 +28,7 @@ const App = () => {
                 <Router>
                     <Navbar />
                     <Alert alert={alert} />
+
                     <div className='container'>
                         <Switch>
                             <Route exact path='/'>

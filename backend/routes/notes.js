@@ -51,7 +51,9 @@ router.post(
         const errors = validationResult(req)
 
         if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() })
+            return res
+                .status(400)
+                .json({ msg: 'Bad Request', errors: errors.array() })
         }
 
         // Create and save a note in database

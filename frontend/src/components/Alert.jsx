@@ -1,10 +1,13 @@
 import React from 'react'
 
 const Alert = (props) => {
-    // console.log(props)
-
     return (
-        <div style={{ height: '60px' }}>
+        <div
+            style={{
+                position: 'fixed',
+                bottom: '0',
+                left: '15px'
+            }}>
             {props.alert && (
                 <div
                     className={`alert alert-${props.alert.type} shadow`}
