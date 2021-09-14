@@ -107,9 +107,11 @@ const Notes = () => {
                                         className='form-label'>
                                         Description
                                     </label>
-                                    <input
+                                    <textarea
                                         onChange={handleChange}
+                                        style={{ resize: 'none' }}
                                         type='text'
+                                        rows={6}
                                         className='form-control'
                                         id='desc'
                                         name='desc'
@@ -122,6 +124,10 @@ const Notes = () => {
                         <div className='modal-footer'>
                             <button
                                 onClick={handleEditNote}
+                                disabled={
+                                    note.title.length < 5 ||
+                                    note.desc.length < 5
+                                }
                                 type='button'
                                 className='btn btn-primary'>
                                 Save changes

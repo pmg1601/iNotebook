@@ -27,7 +27,7 @@ const Navbar = () => {
                 <div
                     className='collapse navbar-collapse'
                     id='navbarSupportedContent'>
-                    <ul className='navbar-nav ms-auto mb-2 mb-lg-0'>
+                    <ul className='navbar-nav mb-2 mb-lg-0'>
                         <li className='nav-item'>
                             <Link
                                 className={`nav-link ${
@@ -48,6 +48,32 @@ const Navbar = () => {
                                 }`}
                                 to='/about'>
                                 About
+                            </Link>
+                        </li>
+                    </ul>
+
+                    <ul className='ms-auto navbar-nav'>
+                        <li className='nav-item'>
+                            <Link
+                                className={`nav-link ${
+                                    location.pathname === '/login'
+                                        ? 'active'
+                                        : ''
+                                }`}
+                                to='/login'>
+                                Log In
+                            </Link>
+                        </li>
+
+                        <li className='nav-item'>
+                            <Link
+                                className={`nav-link ${
+                                    location.pathname === '/signup'
+                                        ? 'active'
+                                        : ''
+                                }`}
+                                to='/signup'>
+                                Sign Up
                             </Link>
                         </li>
                     </ul>

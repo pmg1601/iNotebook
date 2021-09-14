@@ -7,6 +7,8 @@ import Home from './components/Home'
 import About from './components/About'
 import NoteState from './context/notes/NoteState'
 import Alert from './components/Alert'
+import Login from './components/Login'
+import Signup from './components/Signup'
 // import NotFound from './components/NotFound'
 /* -------------------------------------------------------------------------- */
 
@@ -29,7 +31,7 @@ const App = () => {
                     <Navbar />
                     <Alert alert={alert} />
 
-                    <div className='container'>
+                    <div className='container my-4'>
                         <Switch>
                             <Route exact path='/'>
                                 <Home />
@@ -37,6 +39,12 @@ const App = () => {
 
                             <Route exact path='/about'>
                                 <About />
+                            </Route>
+                            <Route exact path='/login'>
+                                <Login />
+                            </Route>
+                            <Route exact path='/signup'>
+                                <Signup />
                             </Route>
                         </Switch>
                     </div>

@@ -12,6 +12,7 @@ const AddNote = () => {
     const handleAddNote = (e) => {
         e.preventDefault()
         addNote(note)
+        setNote(intialNoteState)
     }
 
     const handleClearNote = (e) => {
@@ -26,7 +27,7 @@ const AddNote = () => {
     /* -------------------------------------------------------------------------- */
 
     return (
-        <div className='cotaniner my-4'>
+        <div className='cotaniner'>
             <h1>Add a Note!</h1>
 
             <form>
@@ -66,9 +67,10 @@ const AddNote = () => {
                     <label htmlFor='desc' className='form-label'>
                         Description
                     </label>
-                    <input
+                    <textarea
                         onChange={handleChange}
-                        type='text'
+                        rows={4}
+                        style={{ resize: 'none' }}
                         className='form-control'
                         id='desc'
                         name='desc'
@@ -79,6 +81,7 @@ const AddNote = () => {
 
                 <button
                     onClick={handleAddNote}
+                    disabled={note.title.length < 5 || note.desc.length < 5}
                     type='submit'
                     className='btn btn-dark'>
                     Add note

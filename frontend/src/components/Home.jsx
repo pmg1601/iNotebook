@@ -4,10 +4,13 @@ import Notes from './Notes'
 
 const Home = () => {
     return (
-        <div>
-            <AddNote />
-            <hr />
-            <Notes />
+        <div className='row'>
+            <div className='col-md-6'>
+                <AddNote />
+            </div>
+            <div className='col-md-6'>
+                <Notes />
+            </div>
         </div>
     )
 }
