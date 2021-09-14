@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react'
 import noteContext from '../context/notes/noteContext'
 
+/* -------------------------------------------------------------------------- */
+
 const AddNote = () => {
     const intialNoteState = { title: '', desc: '', tag: 'default' }
 
@@ -18,23 +20,40 @@ const AddNote = () => {
         // console.log(note)
     }
 
+    /* -------------------------------------------------------------------------- */
+
     return (
         <div className='cotaniner mt-2 mb-5'>
             <h1>Add a Note!</h1>
 
             <form>
-                <div className='mb-3'>
-                    <label htmlFor='title' className='form-label'>
-                        Title
-                    </label>
-                    <input
-                        onChange={handleChange}
-                        type='text'
-                        className='form-control'
-                        id='title'
-                        name='title'
-                        aria-describedby='emailHelp'
-                    />
+                <div className='row'>
+                    <div className='mb-3 col-md-6'>
+                        <label htmlFor='title' className='form-label'>
+                            Title
+                        </label>
+                        <input
+                            onChange={handleChange}
+                            type='text'
+                            className='form-control'
+                            id='title'
+                            name='title'
+                            aria-describedby='emailHelp'
+                        />
+                    </div>
+                    <div className='mb-3 col-md-6'>
+                        <label htmlFor='tag' className='form-label'>
+                            Tag
+                        </label>
+                        <input
+                            onChange={handleChange}
+                            type='text'
+                            className='form-control'
+                            id='tag'
+                            name='tag'
+                            aria-describedby='emailHelp'
+                        />
+                    </div>
                 </div>
                 <div className='mb-3'>
                     <label htmlFor='desc' className='form-label'>

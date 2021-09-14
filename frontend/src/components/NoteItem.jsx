@@ -1,8 +1,20 @@
 import React, { useContext } from 'react'
-import noteContext from '../context/notes/noteContext'
 
-const NoteItem = ({ note }) => {
-    const { deleteNote } = useContext(noteContext)
+import noteContext from '../context/notes/noteContext'
+import Alert from './Alert'
+
+/* -------------------------------------------------------------------------- */
+
+const NoteItem = ({ note, updateNote }) => {
+    const { deleteNote, alert, showAlert } = useContext(noteContext)
+
+    const handleDeleteClick = () => {
+        deleteNote(note._id)
+        showAlert('Note Deleted!', 'danger')
+        return <Alert alert={alert} />
+    }
+
+    /* -------------------------------------------------------------------------- */
 
     return (
         <div className='col-sm-6 col-md-4 col-xl-3'>
@@ -21,8 +33,12 @@ const NoteItem = ({ note }) => {
                     <div className='ms-auto'>
                         <i
                             className='far fa-trash-alt'
-                            onClick={() => deleteNote(note._id)}></i>
-                        <i className='far fa-edit ms-3'></i>
+                            onClick={handleDeleteClick}></i>
+                        <i
+                            className='far fa-edit ms-3'
+                            onClick={() => {
+                                updateNote(note)
+                            }}></i>
                     </div>
                 </div>
             </div>

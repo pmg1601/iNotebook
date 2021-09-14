@@ -19,7 +19,7 @@ const App = () => {
     }
 
     useEffect(() => {
-        showAlert('Welcome to iNotebook!', 'success')
+        showAlert('Welcome to iNotebook!', 'primary')
     }, [])
 
     return (
